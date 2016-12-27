@@ -1,0 +1,3 @@
+id,owner_id,type_id,title,slug,status,created_at,updated_at
+1,1,raw,Ut enim ad minima veniam,ut-enim-ad-minima-veniam,0,01-09-2010 00:00:00,09-09-2016 00:00:00
+2,1,raw,Duis aute irure dolor,duis-aute-irure-dolor,0,09-09-2016 00:00:00,09-09-2016 00:00:00

@@ -1,0 +1,277 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd"
+                   objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+    <changeSet author="aleksey" id="1">
+        <createTable tableName="luna_element_types">
+            <column name="id" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aleksey" id="2">
+        <createTable tableName="luna_elements">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="entry_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_id" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="aleksey" id="3">
+        <createTable tableName="luna_elements_allowed_data">
+            <column name="element_type_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aleksey" id="4">
+        <createTable tableName="luna_elements_data">
+            <column name="element_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="CLOB"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aleksey" id="5">
+        <createTable tableName="luna_entries">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="created_at" type="datetime(6)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="unpublished_at" type="datetime(6)"/>
+            <column name="published_at" type="datetime(6)"/>
+            <column name="slug" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="datetime(6)"/>
+            <column name="owner_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aleksey" id="6">
+        <createTable tableName="luna_entry_types">
+            <column name="id" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aleksey" id="7">
+        <createTable tableName="luna_entry_types_element_types">
+            <column name="entry_type_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="element_type_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aleksey" id="8">
+        <createTable tableName="luna_taxonomies">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aleksey" id="9">
+        <createTable tableName="luna_entries_taxonomies">
+            <column name="entry_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="taxonomy_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aleksey" id="10">
+        <createTable tableName="luna_taxonomy_types">
+            <column name="id" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aleksey" id="11">
+        <createTable tableName="luna_users">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="username" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="aleksey" id="12">
+        <addPrimaryKey columnNames="element_type_id, name" constraintName="PRIMARY_KEY_ELEMENTS_ALLOWED_DATA"
+                       tableName="luna_elements_allowed_data"/>
+    </changeSet>
+    <changeSet author="aleksey" id="13">
+        <addPrimaryKey columnNames="element_id, name" constraintName="PRIMARY_KEY_ELEMENTS_DATA"
+                       tableName="luna_elements_data"/>
+    </changeSet>
+    <changeSet author="aleksey" id="14">
+        <createIndex indexName="FK65ii0nqynqp1c7vqj0xn9paop" tableName="luna_entry_types_element_types">
+            <column name="element_type_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aleksey" id="15">
+        <createIndex indexName="FK76kkr3fyw27y8qdhmj4jnahji" tableName="luna_entry_types_element_types">
+            <column name="entry_type_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aleksey" id="16">
+        <createIndex indexName="idx_entries_taxonomies_entry_id" tableName="luna_entries_taxonomies">
+            <column name="entry_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aleksey" id="17">
+        <createIndex indexName="idx_entries_taxonomies_taxonomy_id" tableName="luna_entries_taxonomies">
+            <column name="taxonomy_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aleksey" id="18">
+        <createIndex indexName="FKa9uw6n79rv9283a7id19e64tk" tableName="luna_entries">
+            <column name="type_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aleksey" id="19">
+        <createIndex indexName="FKb6w7n7r7ql2bfl9fwkkl2ggh8" tableName="luna_entries">
+            <column name="owner_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aleksey" id="20">
+        <createIndex indexName="FKk5chp0ape58v06pvnnbgxgc4k" tableName="luna_elements">
+            <column name="type_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aleksey" id="21">
+        <createIndex indexName="FKoq636h3rvlrug0n1s9phkycow" tableName="luna_taxonomies">
+            <column name="type_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aleksey" id="22">
+        <createIndex indexName="idx_taxonomies_name" tableName="luna_taxonomies">
+            <column name="name"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aleksey" id="23">
+        <createIndex indexName="FKr0b0ke07bv2tj8rr632ry0ydr" tableName="luna_elements">
+            <column name="entry_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="aleksey" id="24">
+        <addForeignKeyConstraint baseColumnNames="element_type_id" baseTableName="luna_entry_types_element_types"
+                                 constraintName="FK65ii0nqynqp1c7vqj0xn9paop" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="luna_element_types"/>
+    </changeSet>
+    <changeSet author="aleksey" id="25">
+        <addForeignKeyConstraint baseColumnNames="entry_type_id" baseTableName="luna_entry_types_element_types"
+                                 constraintName="FK76kkr3fyw27y8qdhmj4jnahji" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="luna_entry_types"/>
+    </changeSet>
+    <changeSet author="aleksey" id="26">
+        <addForeignKeyConstraint baseColumnNames="entry_id" baseTableName="luna_entries_taxonomies"
+                                 constraintName="fk_luna_entries_taxonomies_entry_id_luna_entries_id" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="luna_entries"/>
+    </changeSet>
+    <changeSet author="aleksey" id="27">
+        <addForeignKeyConstraint baseColumnNames="taxonomy_id" baseTableName="luna_entries_taxonomies"
+                                 constraintName="fk_luna_entries_taxonomies_taxonomy_id_luna_taxonomies_id" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="luna_taxonomies"/>
+    </changeSet>
+    <changeSet author="aleksey" id="28">
+        <addForeignKeyConstraint baseColumnNames="element_id" baseTableName="luna_elements_data"
+                                 constraintName="FK9elco34prvc1i16v2w0dcsq0w" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="luna_elements"/>
+    </changeSet>
+    <changeSet author="aleksey" id="29">
+        <addForeignKeyConstraint baseColumnNames="type_id" baseTableName="luna_entries"
+                                 constraintName="FKa9uw6n79rv9283a7id19e64tk" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="luna_entry_types"/>
+    </changeSet>
+    <changeSet author="aleksey" id="30">
+        <addForeignKeyConstraint baseColumnNames="owner_id" baseTableName="luna_entries"
+                                 constraintName="FKb6w7n7r7ql2bfl9fwkkl2ggh8" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="luna_users"/>
+    </changeSet>
+    <changeSet author="aleksey" id="31">
+        <addForeignKeyConstraint baseColumnNames="element_type_id" baseTableName="luna_elements_allowed_data"
+                                 constraintName="FKcv5et33d0a4f3ws8auk9hwchi" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="luna_element_types"/>
+    </changeSet>
+    <changeSet author="aleksey" id="32">
+        <addForeignKeyConstraint baseColumnNames="type_id" baseTableName="luna_elements"
+                                 constraintName="FKk5chp0ape58v06pvnnbgxgc4k" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="luna_element_types"/>
+    </changeSet>
+    <changeSet author="aleksey" id="33">
+        <addForeignKeyConstraint baseColumnNames="type_id" baseTableName="luna_taxonomies"
+                                 constraintName="FKoq636h3rvlrug0n1s9phkycow" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="luna_taxonomy_types"/>
+    </changeSet>
+    <changeSet author="aleksey" id="34">
+        <addForeignKeyConstraint baseColumnNames="entry_id" baseTableName="luna_elements"
+                                 constraintName="FKr0b0ke07bv2tj8rr632ry0ydr" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="luna_entries"/>
+    </changeSet>
+    <changeSet author="aleksey" id="35">
+    	<createTable tableName="luna_hibernate_sequences">
+            <column name="sequence_name" type="VARCHAR(255)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="next_val" type="BIGINT">
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

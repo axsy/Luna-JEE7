@@ -1,0 +1,44 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd"
+                   objectQuotingStrategy="QUOTE_ALL_OBJECTS" >
+    <changeSet id="generic_test_data" author="aleksey">
+        <loadData tableName="luna_users" separator="," file="csv/luna_users.csv" relativeToChangelogFile="true">
+            <column name="id" type="NUMERIC" />
+            <column name="username" type="STRING" />
+        </loadData>
+        <loadData tableName="luna_entries" separator="," file="csv/luna_entries.csv" relativeToChangelogFile="true">
+            <column name="id" type="NUMERIC" />
+            <column name="owner_id" type="NUMERIC" />
+            <column name="type_id" type="STRING" />
+            <column name="title" type="STRING" />
+            <column name="slug" type="STRING" />
+            <column name="status" type="NUMERIC" />
+            <column name="created_at" type="DATETIME" />
+            <column name="updated_at" type="DATETIME" />
+        </loadData>
+        <loadData tableName="luna_elements" separator="," file="csv/luna_elements.csv" relativeToChangelogFile="true">
+            <column name="id" type="NUMERIC" />
+            <column name="entry_id" type="NUMERIC" />
+            <column name="type_id" type="STRING" />
+            <column name="order_id" type="NUMERIC" />
+        </loadData>
+        <loadData tableName="luna_elements_data" separator="," file="csv/luna_elements_data.csv" relativeToChangelogFile="true">
+            <column name="element_id" type="NUMERIC" />
+            <column name="name" type="STRING" />
+            <column name="value" type="STRING" />
+        </loadData>
+        <loadData tableName="luna_taxonomies" separator="," file="csv/luna_taxonomies.csv" relativeToChangelogFile="true">
+            <column name="id" type="NUMERIC" />
+            <column name="name" type="STRING" />
+            <column name="entry_id" type="NUMERIC" />
+            <column name="type_id" type="STRING" />
+            <column name="order_id" type="NUMERIC" />
+        </loadData>
+        <loadData tableName="luna_entries_taxonomies" separator="," file="csv/luna_entries_taxonomies.csv" relativeToChangelogFile="true">
+            <column name="entry_id" type="NUMERIC" />
+            <column name="taxonomy_id" type="NUMERIC" />
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

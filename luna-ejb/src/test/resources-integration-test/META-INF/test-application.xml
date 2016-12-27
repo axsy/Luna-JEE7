@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/application_7.xsd"
+    version="7">
+	<module>
+		<web>
+			<web-uri>webapp.war</web-uri>
+			<context-root>/test</context-root>
+		</web>
+	</module>
+	<module>
+		<ejb>ejb.jar</ejb>
+	</module>
+	<data-source>
+		<name>java:app/Luna/TestDS</name>
+		<class-name>org.h2.jdbcx.JdbcDataSource</class-name>
+		<url>jdbc:h2:mem:luna_test;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false;IGNORECASE=TRUE;</url>
+	</data-source>
+</application>

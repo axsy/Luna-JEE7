@@ -1,0 +1,85 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<artifactId>luna</artifactId>
+		<groupId>com.alekseyorlov.luna</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>luna-all</artifactId>
+	<packaging>jar</packaging>
+
+	<name>luna-all</name>
+	<url>https://github.com/axsy/luna</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<javax-el.version>2.2.4</javax-el.version>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-web-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.zalando.jpa</groupId>
+			<artifactId>eclipselink-session-customizer</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alekseyorlov.luna</groupId>
+			<artifactId>luna-dto</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- Validation -->
+		<!-- <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-validator</artifactId> 
+			</dependency> -->
+
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-core</artifactId>
+		</dependency>
+		<!-- <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-jpamodelgen</artifactId> 
+			</dependency> -->
+
+		<!-- Mapper -->
+		<dependency>
+			<groupId>ma.glasnost.orika</groupId>
+			<artifactId>orika-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.zalando.zjsonpatch</groupId>
+			<artifactId>zjsonpatch</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+		</dependency>
+
+		<!-- Utils -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+
+
+		<!-- Testing -->
+
+		<!-- Requirements for the Hibernate validator, necessary for integration 
+			tests -->
+		<!-- <dependency> <groupId>javax.el</groupId> <artifactId>javax.el-api</artifactId> 
+			<version>${javax-el.version}</version> <scope>test</scope> </dependency> 
+			<dependency> <groupId>org.glassfish.web</groupId> <artifactId>javax.el</artifactId> 
+			<version>${javax-el.version}</version> <scope>test</scope> </dependency> -->
+	</dependencies>
+
+</project>

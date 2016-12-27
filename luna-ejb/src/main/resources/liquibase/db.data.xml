@@ -1,0 +1,30 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd"
+                   objectQuotingStrategy="QUOTE_ALL_OBJECTS" >
+    <changeSet id="35" author="aleksey">
+        <loadData tableName="luna_entry_types" separator="," file="csv/luna_entry_types.csv" relativeToChangelogFile="true">
+            <column name="id" type="STRING" />
+            <column name="title" type="STRING" />
+        </loadData>
+        <loadData tableName="luna_element_types" separator="," file="csv/luna_element_types.csv" relativeToChangelogFile="true">
+            <column name="id" type="STRING" />
+            <column name="title" type="STRING" />
+        </loadData>
+        <loadData tableName="luna_elements_allowed_data" separator="," file="csv/luna_elements_allowed_data.csv" relativeToChangelogFile="true">
+            <column name="element_type_id" type="STRING" />
+            <column name="name" type="STRING" />
+            <column name="type" type="STRING" />
+        </loadData>
+        <loadData tableName="luna_entry_types_element_types" separator="," file="csv/luna_entry_types_element_types.csv" relativeToChangelogFile="true">
+            <column name="entry_type_id" type="STRING" />
+            <column name="element_type_id" type="STRING" />
+        </loadData>
+        <loadData tableName="luna_taxonomy_types" separator="," file="csv/luna_taxonomy_types.csv" relativeToChangelogFile="true">
+            <column name="id" type="STRING" />
+            <column name="title" type="STRING" />
+        </loadData>
+    </changeSet>
+</databaseChangeLog>
